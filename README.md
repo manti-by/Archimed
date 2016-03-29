@@ -12,22 +12,31 @@ Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](htt
 Run Vagrant and login to box:
 
 ```
-    $ vagrant up && vagrant ssh
+$ vagrant up
+$ vagrant ssh
+```
+
+Install latest NodeJS server
+
+```
+$ curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
+$ sudo apt-get install -y nodejs
 ```
 
 Install NPM package manager:
 
 ```
-    $ sudo apt-get update && sudo apt-get upgrade -y
-    $ sudo apt-get install -y npm
+$ sudo apt-get update
+$ sudo apt-get upgrade -y
+$ sudo apt-get install -y npm
 ```
 
 Install NPM packages and run server:
 
 ```
-    $ cd /vagrant/application
-    $ npm install
-    $ npm start
+$ cd /vagrant/application
+$ npm install
+$ npm start
 ```
 
 Open up [http://localhost:3000/](http://localhost:3000/) in your browser.

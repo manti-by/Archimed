@@ -1,22 +1,8 @@
+import './assets/css/base.css'
+import './node_modules/react-mdl/extra/material.min.css'
+import './node_modules/react-mdl/extra/material.min.js'
+
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import Counter from './components/Counter'
-import counter from './reducers'
+import App from './containers/App';
 
-const store = createStore(counter)
-const rootEl = document.getElementById('root')
-
-function render() {
-  ReactDOM.render(
-    <Counter
-      value={store.getState()}
-      onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
-      onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
-    />,
-    rootEl  
-  )
-}
-
-render()
-store.subscribe(render)
+React.render(<App />, document.getElementById('container'));

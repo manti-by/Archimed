@@ -1,0 +1,12 @@
+.archimed-layout {
+    position: relative;
+    background: url(../images/bg.jpg) center / cover;
+}
+.archimed-layout .mdl-layout__header,
+.archimed-layout .mdl-layout__drawer-button {
+    color: black;
+}
+
+#container {
+    padding-top: 50px;
+}
