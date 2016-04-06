@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
+import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import CardApp from '../components/CardApp';
-import cards from '../reducers/Cards';
+import { createStore, renderDevTools } from '../enhancers/devTools';
 
-const store = createStore(cards);
+import CardApp from '../containers/CardApp';
+import * as reducers from '../reducers';
+
+const reducer = combineReducers(reducers);
+const store = createStore(reducer);
 
 export default class App extends Component {
     render() {
-        <Provider store={store}>
-            {() => <CardApp /> }
-        </Provider>
+        return (
+            <div>
+                <Provider store={store}>
+                    { () => <CardApp /> }
+                </Provider>
+
+                { renderDevTools(store) }
+            </div>
+        );
     }
 }

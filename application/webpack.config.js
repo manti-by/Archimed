@@ -1,10 +1,14 @@
 var path = require('path');
 var webpack = require('webpack');
+var devFlagPlugin = new webpack.DefinePlugin({
+    __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+});
 
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval',
     entry: [
-        'webpack-hot-middleware/client',
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server',
         './index'
     ],
     output: {
@@ -13,8 +17,9 @@ module.exports = {
         publicPath: '/static/'
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+        devFlagPlugin
     ],
     module: {
         loaders: [
@@ -28,10 +33,18 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel',
-                exclude: /node_modules/,
+                loader: 'babel-loader',
+                include: __dirname,
+                exclude: /node_modules/
+            },
+            {
+                test: /\.jsx?$/,
+                loaders: ['react-hot', 'babel'],
                 include: __dirname
             }
         ]
+    },
+    resolve: {
+        extensions: ['', '.js', '.json']
     }
 };

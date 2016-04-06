@@ -1,11 +1,9 @@
-import '../assets/css/base.css'
-
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as CardActions from '../actions/CardActions';
-import { Button } from '../components/Button';
+import { AddButton } from '../components';
 
 @connect(state => ({
     cardlist: state.cardlist
@@ -23,7 +21,7 @@ export default class CardApp extends Component {
         const actions = bindActionCreators(CardActions, dispatch);
 
         return (
-            <Button />
+            <AddButton text={'Add'} onClick={() => this.props.addCard('New')} />
         );
     }
 }

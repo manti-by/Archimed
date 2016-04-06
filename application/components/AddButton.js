@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
-class Button extends Component {
+export default class AddButton extends Component {
+
+    static propTypes = {
+        text: PropTypes.text.isRequired,
+        onClick: PropTypes.func.isRequired
+    };
 
     getClass() {
         return 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent';
@@ -9,16 +14,9 @@ class Button extends Component {
     render() {
         const { text, onClick } = this.props;
         return (
-            <button onClick={onClick} className={this.getClass()}>
+            <AddButton onClick={onClick} className={this.getClass()}>
                 {text}
-            </button>
+            </AddButton>
         )
     }
 }
-
-Button.propTypes = {
-    text: PropTypes.text.isRequired,
-    onClick: PropTypes.func.isRequired
-};
-
-export default Button
