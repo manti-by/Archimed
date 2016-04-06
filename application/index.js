@@ -9,4 +9,7 @@ import App from './containers/App';
 
 const store = configureStore();
 
-render(<App store={store} />, document.getElementById('container'));
+render(
+    <App store={store} />,
+    document.getElementById('container')
+);
