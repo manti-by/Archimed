@@ -7,7 +7,7 @@ var devFlagPlugin = new webpack.DefinePlugin({
 module.exports = {
     devtool: 'eval',
     entry: [
-        'webpack-dev-server/client?http://localhost:3000',
+        'webpack-dev-server/client?http://0.0.0.0:3000',
         'webpack/hot/only-dev-server',
         './index'
     ],
@@ -33,14 +33,15 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                loader: 'babel',
                 include: __dirname,
                 exclude: /node_modules/
             },
             {
                 test: /\.jsx?$/,
-                loaders: ['react-hot', 'babel'],
-                include: __dirname
+                loader: 'babel',
+                include: __dirname,
+                exclude: /node_modules/
             }
         ]
     },

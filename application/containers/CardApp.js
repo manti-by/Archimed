@@ -21,7 +21,7 @@ export default class CardApp extends Component {
         const actions = bindActionCreators(CardActions, dispatch);
 
         return (
-            <AddButton text={'Add'} onClick={() => this.props.addCard('New')} />
+            <AddButton onClick={() => this.props.addCard('New')} />
         );
     }
 }

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import { createStore, renderDevTools } from '../enhancers/devTools';
-
 import CardApp from '../containers/CardApp';
+import DevTools from '../containers/DevTools'
 import * as reducers from '../reducers';
 
 const reducer = combineReducers(reducers);
@@ -17,8 +16,7 @@ export default class App extends Component {
                 <Provider store={store}>
                     { () => <CardApp /> }
                 </Provider>
-
-                { renderDevTools(store) }
+                <DevTools />
             </div>
         );
     }
