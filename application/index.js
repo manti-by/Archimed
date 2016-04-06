@@ -1,4 +1,3 @@
-import './assets/css/base.css'
 import './node_modules/react-mdl/extra/material.min.css'
 import './node_modules/react-mdl/extra/material.min.js'
 
@@ -11,5 +10,5 @@ const store = configureStore();
 
 render(
     <App store={store} />,
-    document.getElementById('container')
+    document.getElementById('root')
 );

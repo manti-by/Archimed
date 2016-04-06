@@ -1,27 +1,33 @@
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import '../assets/css/base.css'
+
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { bindActionCreators } from 'redux';
+import AddButton from '../components/AddButton';
 import * as CardActions from '../actions/CardActions';
-import { AddButton } from '../components';
 
-@connect(state => ({
-    cardlist: state.cardlist
-}))
-
-export default class CardApp extends Component {
-
-    static propTypes = {
-        cardById: PropTypes.object.isRequired,
-        dispatch: PropTypes.func.isRequired
-    };
-
-    render () {
-        const { cardlist: { cardById }, dispatch } = this.props;
-        const actions = bindActionCreators(CardActions, dispatch);
+class CardApp extends Component {
+    render() {
+        const { cards, actions } = this.props;
 
         return (
-            <AddButton onClick={() => this.props.addCard('New')} />
+            <div>
+                <AddButton onClick={actions.addCard} />
+            </div>
         );
     }
 }
+
+function mapState(state) {
+    return {
+        cards: state.cards
+    };
+}
+
+function mapDispatch(dispatch) {
+    return {
+        actions: bindActionCreators(CardActions, dispatch)
+    };
+}
+
+export default connect(mapState, mapDispatch)(CardApp);
