@@ -1,18 +1,40 @@
 .archimed-layout {
-    position: relative;
     background: url(../images/bg.jpg) center / cover;
 }
 .archimed-layout .mdl-layout__header,
 .archimed-layout .mdl-layout__drawer-button {
-    color: black;
+    color: #FFF;
 }
 
-#container {
-    padding-top: 50px;
+.archimed-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .archimed-add-button {
     position: fixed !important;
-    bottom: 1%;
-    left: 1%;
+    right: 2%;
+    bottom: 2%;
+    z-index: 900;
+}
+
+.archimed-header {
+    padding: 2px 0 0 50px;
+    color: #FFF;
+}
+
+.card-list-wrap {
+    width: 100%;
+    margin: 0 10px;
+}
+
+.card-list {
+    width: 100%;
+    margin: 0;
+}
+
+.card-list-item {
+    background: #FFF;
 }

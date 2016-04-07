@@ -11,7 +11,7 @@ export default class AddButton extends Button {
         const { text, onClick } = this.props;
         return (
             <button onClick={onClick} className={this.getClass()}>
-                <i className={'material-icons'}>{'add'}</i>
+                <i className={'material-icons'}>add</i>
             </button>
         )
     }
