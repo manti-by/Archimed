@@ -1,4 +1,4 @@
-import { ADD_CARD, DELETE_CARD } from '../constants/ActionTypes';
+import { ADD_CARD, EDIT_CARD, SAVE_CARD, DELETE_CARD } from '../constants/ActionTypes';
 
 const initialState = [{
     text: 'New Card',
@@ -12,6 +12,16 @@ export default function cards(state = initialState, action) {
                 id: (state.length === 0) ? 0 : state[0].id + 1,
                 text: action.text
             }, ...state];
+
+        case EDIT_CARD:
+            return state.filter(card =>
+                card.id !== action.id
+            );
+
+        case SAVE_CARD:
+            return state.filter(card =>
+                card.id !== action.id
+            );
 
         case DELETE_CARD:
             return state.filter(card =>

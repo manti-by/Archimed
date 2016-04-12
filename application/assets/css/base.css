@@ -1,4 +1,5 @@
 .archimed-layout {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
     background: url(../images/bg.jpg) center / cover;
 }
 .archimed-layout .mdl-layout__header,
@@ -21,11 +22,18 @@
 }
 
 .archimed-header {
-    padding: 2px 0 0 50px;
+    margin: 0 10px;
+    padding: 16px 15px 14px 15px;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: .02em;
+    font-weight: 400;
     color: #FFF;
 }
 
 .card-list-wrap {
+    position: relative;
     width: 100%;
     margin: 0 10px;
 }
@@ -37,4 +45,14 @@
 
 .card-list-item {
     background: #FFF;
+}
+
+.card-list-item .action {
+    float: right;
+}
+
+@media screen and (max-width: 1000px) {
+    .archimed-header {
+        padding-left: 50px;
+    }
 }
