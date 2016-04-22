@@ -14,15 +14,15 @@ export default class CardListItemClosed extends Component {
         return (
             <span>
                 <span classNname='mdl-list__item-primary-content'>
-                    { card.name || new Date().toJSON().slice(0,10) }
+                    { card.text }
                 </span>
                 <span className='mdl-list__item-secondary-action actions'>
                     <button className='mdl-button mdl-js-button mdl-button--icon'
-                            onClick={() => editCard(card.id)}>
+                            onClick={() => editCard()}>
                         <i className='material-icons'>mode_edit</i>
                     </button>
                     <button className='mdl-button mdl-js-button mdl-button--icon'
-                            onClick={() => deleteCard(card.id)}>
+                            onClick={() => deleteCard()}>
                         <i className='material-icons'>delete</i>
                     </button>
                 </span>
