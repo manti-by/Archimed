@@ -3,26 +3,40 @@ import React, { Component, PropTypes } from 'react';
 export default class CardListItem extends Component {
 
     static propTypes = {
-        card: PropTypes.object.isRequired,
-        saveCard: PropTypes.func.isRequired
+        card: PropTypes.object.isRequired
     };
 
-    handleChange(e) {
-        this.setState({ text: e.target.value });
+    handleChange(event) {
+        this.setState({text: event.target.value});
+    }
+
+    handleSave() {
+        this.props.saveCard(this.props.card.id, this.state.text);
+    }
+
+    handleCancel() {
+        this.props.saveCard(this.props.card.id, this.props.card.text);
     }
 
     render () {
-        const {card, saveCard} = this.props;
+        const {card} = this.props;
 
         return (
-            <span>
-                <input type="text" name="text" value={ card.text } placeholder="Name"
+            <div>
+                <input type="text" name="text" placeholder="Name" defaultValue={card.text}
                        className="mdl-textfield__input" onChange={::this.handleChange} />
-                <button className="mdl-button mdl-js-button mdl-button--raised"
-                        onClick={() => saveCard()}>
-                    Save
-                </button>
-            </span>
+
+                <div className="card-actions">
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--primary"
+                            onClick={::this.handleSave}>
+                        Update
+                    </button>
+                    <button className="mdl-button mdl-js-button mdl-button--raised"
+                            onClick={::this.handleCancel}>
+                        Cancel
+                    </button>
+                </div>
+            </div>
         );
     }
 

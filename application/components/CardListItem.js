@@ -16,12 +16,9 @@ export default class CardListItem extends Component {
 
         var content;
         if (card.opened) {
-            content = <CardListItemOpened key={card.id} card={card}
-                                          saveCard={() => saveCard(card.id)} />
+            content = <CardListItemOpened key={card.id} card={card} saveCard={saveCard} />
         } else {
-            content = <CardListItemClosed key={card.id} card={card}
-                                          editCard={() => editCard(card.id)}
-                                          deleteCard={() => deleteCard(card.id)} />
+            content = <CardListItemClosed key={card.id} card={card} editCard={editCard} deleteCard={deleteCard} />
         }
 
         return (

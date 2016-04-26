@@ -15,7 +15,9 @@ export default function cards(state = initialState, action) {
 
         case EDIT_CARD:
             return state.map(function(card) {
-                if (card.id == action.id) card.opened = true;
+                if (card.id == action.id) {
+                    card.opened = true;
+                }
                 return card;
             });
 

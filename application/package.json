@@ -1,6 +1,6 @@
 {
   "name": "archimed",
-  "version": "0.0.5",
+  "version": "0.1.1",
   "description": "Archimed test React/Redux application",
   "scripts": {
     "start": "nodejs server.js"

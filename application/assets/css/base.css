@@ -44,11 +44,36 @@
 }
 
 .card-list-item {
+    display: block;
+    line-height: normal;
     background: #FFF;
 }
 
+.card-list-item .card-name {
+    float: left;
+    width: 80%;
+    padding-top: 5px;
+}
+
 .card-list-item .actions {
-    float: right;
+    float: left;
+    text-align: right;
+    width: 20%;
+}
+
+.card-list-item input {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+
+.card-list-item .card-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.card-list-item .card-actions button {
+    margin-left: 10px;
 }
 
 @media screen and (max-width: 1000px) {

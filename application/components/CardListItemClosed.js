@@ -12,21 +12,21 @@ export default class CardListItemClosed extends Component {
         const {card, editCard, deleteCard} = this.props;
 
         return (
-            <span>
-                <span classNname='mdl-list__item-primary-content'>
+            <div>
+                <div className='mdl-list__item-primary-content card-name'>
                     { card.text }
-                </span>
-                <span className='mdl-list__item-secondary-action actions'>
+                </div>
+                <div className='mdl-list__item-secondary-action actions'>
                     <button className='mdl-button mdl-js-button mdl-button--icon'
-                            onClick={() => editCard()}>
+                            onClick={() => editCard(card.id)}>
                         <i className='material-icons'>mode_edit</i>
                     </button>
                     <button className='mdl-button mdl-js-button mdl-button--icon'
-                            onClick={() => deleteCard()}>
+                            onClick={() => deleteCard(card.id)}>
                         <i className='material-icons'>delete</i>
                     </button>
-                </span>
-            </span>
+                </div>
+            </div>
         );
     }
 
