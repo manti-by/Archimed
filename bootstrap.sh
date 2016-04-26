@@ -4,8 +4,8 @@ echo "*** Updating system packages ***"
 sudo apt-get update
 sudo apt-get upgrade -y
 echo ""
-echo "*** Remove default system NodeJS and NPM ***"
-sudo apt-get remove nodejs npm
+echo "*** Remove default system NodeJS, NPM and MongoDB ***"
+sudo apt-get remove nodejs npm mongodb-server mongodb-clients
 echo ""
 echo "*** Installing NodeJS 0.12 and NPM ***"
 curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -

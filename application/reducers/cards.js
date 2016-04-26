@@ -1,9 +1,6 @@
 import { ADD_CARD, EDIT_CARD, SAVE_CARD, DELETE_CARD } from '../constants/ActionTypes';
 
-const initialState = [{
-    text: 'New Card',
-    id: 0
-}];
+const initialState = [];
 
 export default function cards(state = initialState, action) {
     switch (action.type) {
