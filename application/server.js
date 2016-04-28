@@ -38,7 +38,7 @@ app.get('/api', function (request, response) {
                     return;
                 }
                 if (doc != null) {
-                    result.data.append(doc);
+                    result.data.push(doc);
                 }
             });
         }
