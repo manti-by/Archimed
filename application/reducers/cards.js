@@ -1,11 +1,13 @@
 import { ADD_CARD, EDIT_CARD, SAVE_CARD, DELETE_CARD } from '../constants/ActionTypes';
+import sync from './sync';
 
 export default function cards(state = [], action) {
     switch (action.type) {
         case ADD_CARD:
             return [{
-                id: (state.length === 0) ? 0 : state[0].id + 1,
-                text: action.text || new Date().toJSON().slice(0,10)
+                id      : (state.length === 0) ? 1 : state[0].id + 1,
+                text    : action.text || new Date().toJSON().slice(0,10),
+                opened  : true
             }, ...state];
 
         case EDIT_CARD:
@@ -17,18 +19,18 @@ export default function cards(state = [], action) {
             });
 
         case SAVE_CARD:
-            return state.map(function(card) {
+            return sync(state.map(function(card) {
                 if (card.id == action.id) {
                     card.opened = false;
                     card.text = action.text;
                 }
                 return card;
-            });
+            }));
 
         case DELETE_CARD:
-            return state.filter(card =>
+            return sync(state.filter(card =>
                 card.id !== action.id
-            );
+            ));
 
         default:
             return state;

@@ -15,6 +15,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure routes
 app.get('/api', function (request, response) {
@@ -61,15 +62,17 @@ app.post('/api', upload.array(), function (request, response) {
 
             console.log(request.body);
 
-            request.body.each(function(error, doc) {
-                db.collection('restaurants').insertOne(doc, function(error) {
-                    if (error) {
-                        console.log(error);
-                        result = { status: 500, message: error };
-                        return;
-                    }
+            if (request.body.data) {
+                request.body.data.each(function(error, doc) {
+                    db.collection('restaurants').insertOne(doc, function(error) {
+                        if (error) {
+                            console.log(error);
+                            result = { status: 500, message: error };
+                            return;
+                        }
+                    });
                 });
-            });
+            }
         }
         response.send(stringify(result));
     });
