@@ -30,7 +30,7 @@ app.get('/api', function (request, response) {
             result.status = 200;
             result.data = [];
 
-            var cursor = db.collection('test').find();
+            var cursor = db.collection('cards').find();
             cursor.each(function(error, doc) {
                 if (error) {
                     console.log(error);
@@ -60,18 +60,17 @@ app.post('/api', upload.array(), function (request, response) {
             console.log('Insert all cards to DB');
             result.status = 200;
 
-            console.log(request.body);
-
             if (request.body.data) {
-                request.body.data.each(function(error, doc) {
-                    db.collection('restaurants').insertOne(doc, function(error) {
+                var data = JSON.parse(request.body.data);
+                for (var i = 0; i < data.length; i++) {
+                    db.collection('cards').insertOne(data[i], function(error) {
                         if (error) {
                             console.log(error);
                             result = { status: 500, message: error };
                             return;
                         }
                     });
-                });
+                }
             }
         }
         response.send(stringify(result));
