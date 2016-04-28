@@ -1,19 +1,20 @@
 var path = require('path');
+var assert = require('assert');
+var bodyParser = require('body-parser');
 var stringify = require('json-stringify-safe');
+
+var app = require('express')();
 var webpack = require('webpack');
 var config = require('./webpack.config');
-
-var express = require('express');
-var app = express();
 
 
 // Configure webpack
 var compiler = webpack(config);
 app.use(require('webpack-dev-middleware')(compiler, {
-    noInfo: true,
     publicPath: config.output.publicPath
 }));
 
+app.use(bodyParser.json());
 
 // Configure routes
 app.get('/api', function (request, response) {
@@ -26,10 +27,51 @@ app.get('/api', function (request, response) {
         } else {
             console.log('Return all cards from DB');
             result.status = 200;
-            result.data = db.collection('test').find();
+            result.data = [];
+
+            var cursor = db.collection('test').find();
+            cursor.each(function(error, doc) {
+                if (error) {
+                    console.log(error);
+                    result = { status: 500, message: error };
+                    return;
+                }
+                if (doc != null) {
+                    result.data.append(doc);
+                }
+            });
         }
-        response.write(stringify(result));
-        db.close();
+        response.send(stringify(result));
+    });
+});
+
+var multer = require('multer');
+var upload = multer();
+
+app.post('/api', upload.array(), function (request, response) {
+    var MongoClient = require('mongodb').MongoClient;
+    MongoClient.connect(config.server.mongo, function(error, db) {
+        var result = { status: 500 };
+        if (error) {
+            console.log('Error: Could not connect to DB. ' + error);
+            result.message = error;
+        } else {
+            console.log('Insert all cards to DB');
+            result.status = 200;
+
+            console.log(request.body);
+
+            request.body.each(function(error, doc) {
+                db.collection('restaurants').insertOne(doc, function(error) {
+                    if (error) {
+                        console.log(error);
+                        result = { status: 500, message: error };
+                        return;
+                    }
+                });
+            });
+        }
+        response.send(stringify(result));
     });
 });
 

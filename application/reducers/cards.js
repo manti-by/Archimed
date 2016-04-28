@@ -1,8 +1,6 @@
 import { ADD_CARD, EDIT_CARD, SAVE_CARD, DELETE_CARD } from '../constants/ActionTypes';
 
-const initialState = [];
-
-export default function cards(state = initialState, action) {
+export default function cards(state = [], action) {
     switch (action.type) {
         case ADD_CARD:
             return [{

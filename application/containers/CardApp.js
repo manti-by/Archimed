@@ -13,7 +13,10 @@ class CardApp extends Component {
 
     componentDidMount() {
         this.serverRequest = $.get('/api', function (result) {
-            this.setState(result);
+            result = JSON.parse(result);
+            if (result.status == 200) {
+                this.setState(result.data);
+            }
         }.bind(this));
     }
 
