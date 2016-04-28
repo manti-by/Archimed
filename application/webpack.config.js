@@ -6,9 +6,12 @@ var devFlagPlugin = new webpack.DefinePlugin({
 
 module.exports = {
     devtool: 'eval',
+    server: {
+        host: '0.0.0.0',
+        port: 3000,
+        mongo: 'mongodb://localhost:27017/myproject'
+    },
     entry: [
-        'webpack-dev-server/client?http://0.0.0.0:3000',
-        'webpack/hot/only-dev-server',
         './index'
     ],
     output: {
