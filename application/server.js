@@ -17,6 +17,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // Configure routes
 app.get('/api', function (request, response) {
     var MongoClient = require('mongodb').MongoClient;
@@ -30,19 +31,17 @@ app.get('/api', function (request, response) {
             result.status = 200;
             result.data = [];
 
-            var cursor = db.collection('cards').find();
-            cursor.each(function(error, doc) {
+            db.collection('cards').find().toArray(function(error, data) {
                 if (error) {
                     console.log(error);
-                    result = { status: 500, message: error };
-                    return;
+                    result.status = 500;
+                } else {
+                    console.log(data);
+                    result.data = data;
                 }
-                if (doc != null) {
-                    result.data.push(doc);
-                }
+                response.send(stringify(result));
             });
         }
-        response.send(stringify(result));
     });
 });
 
@@ -61,16 +60,24 @@ app.post('/api', upload.array(), function (request, response) {
             result.status = 200;
 
             if (request.body.data) {
-                var data = JSON.parse(request.body.data);
-                for (var i = 0; i < data.length; i++) {
-                    db.collection('cards').insertOne(data[i], function(error) {
-                        if (error) {
-                            console.log(error);
-                            result = { status: 500, message: error };
-                            return;
-                        }
-                    });
-                }
+                var collection = db.collection('cards');
+                collection.drop(function(error) {
+                    if (error) {
+                        result = {status: 500, message: error};
+                        return;
+                    }
+
+                    var data = JSON.parse(request.body.data);
+                    for (var i = 0; i < data.length; i++) {
+                        collection.insertOne(data[i], function (error) {
+                            if (error) {
+                                console.log(error);
+                                result = {status: 500, message: error};
+                                return;
+                            }
+                        });
+                    }
+                });
             }
         }
         response.send(stringify(result));

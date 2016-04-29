@@ -9,7 +9,7 @@ module.exports = {
     server: {
         host: '0.0.0.0',
         port: 3000,
-        mongo: 'mongodb://localhost:27017/myproject'
+        mongo: 'mongodb://localhost:27017/archimed'
     },
     entry: [
         './index'
