@@ -19,70 +19,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // Configure routes
-app.get('/api', function (request, response) {
-    var MongoClient = require('mongodb').MongoClient;
-    MongoClient.connect(config.server.mongo, function(error, db) {
-        var result = { status: 500 };
-        if (error) {
-            console.log('Error: Could not connect to DB. ' + error);
-            result.message = error;
-        } else {
-            console.log('Return all cards from DB');
-            result.status = 200;
-            result.data = [];
-
-            db.collection('cards').find().toArray(function(error, data) {
-                if (error) {
-                    console.log(error);
-                    result.status = 500;
-                } else {
-                    console.log(data);
-                    result.data = data;
-                }
-                response.send(stringify(result));
-            });
-        }
-    });
-});
-
+var routes = require('./store/mongo');
 var multer = require('multer');
 var upload = multer();
 
-app.post('/api', upload.array(), function (request, response) {
-    var MongoClient = require('mongodb').MongoClient;
-    MongoClient.connect(config.server.mongo, function(error, db) {
-        var result = { status: 500 };
-        if (error) {
-            console.log('Error: Could not connect to DB. ' + error);
-            result.message = error;
-        } else {
-            console.log('Insert all cards to DB');
-            result.status = 200;
-
-            if (request.body.data) {
-                var collection = db.collection('cards');
-                collection.drop(function(error) {
-                    if (error) {
-                        result = {status: 500, message: error};
-                        return;
-                    }
-
-                    var data = JSON.parse(request.body.data);
-                    for (var i = 0; i < data.length; i++) {
-                        collection.insertOne(data[i], function (error) {
-                            if (error) {
-                                console.log(error);
-                                result = {status: 500, message: error};
-                                return;
-                            }
-                        });
-                    }
-                });
-            }
-        }
-        response.send(stringify(result));
-    });
-});
+app.get('/api', routes.getCards);
+app.post('/api', upload.array(), routes.setCards);
 
 app.get('*', function (request, response) {
     console.log('Get ' + request.baseUrl);
