@@ -8,6 +8,18 @@ export default class CardList extends Component {
         actions: PropTypes.object.isRequired
     };
 
+    componentWillMount() {
+        this.serverRequest = $.get('/api', function (result) {
+            if (result.status == 200) {
+                this.setState({ cards: result.data, actions: this.props.actions });
+            }
+        }.bind(this));
+    }
+
+    componentWillUnmount() {
+        this.serverRequest.abort();
+    }
+    
     render() {
         const { cards, actions } = this.props;
 

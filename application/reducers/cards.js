@@ -6,7 +6,7 @@ export default function cards(state = [], action) {
         case ADD_CARD:
             return [{
                 id      : (state.length === 0) ? 1 : state[0].id + 1,
-                text    : action.text || new Date().toJSON().slice(0,10),
+                text    : new Date().toJSON().slice(0,10),
                 opened  : true
             }, ...state];
 

@@ -11,19 +11,6 @@ import * as CardActions from '../actions/CardActions';
 
 class CardApp extends Component {
 
-    componentDidMount() {
-        this.serverRequest = $.get('/api', function (result) {
-            result = JSON.parse(result);
-            if (result.status == 200) {
-                this.setState(result.data);
-            }
-        }.bind(this));
-    }
-
-    componentWillUnmount() {
-        this.serverRequest.abort();
-    }
-
     render() {
         const { cards, actions } = this.props;
 
