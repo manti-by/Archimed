@@ -4,9 +4,10 @@ import sync from './sync';
 export default function cards(state = [], action) {
     switch (action.type) {
         case ADD_CARD:
+            var id = (state.length === 0) ? 1 : state[0].id + 1;
             return [{
-                id      : (state.length === 0) ? 1 : state[0].id + 1,
-                text    : new Date().toJSON().slice(0,10),
+                id      : id,
+                text    : new Date().toJSON().slice(0,10) + ' ' + id,
                 opened  : true
             }, ...state];
 

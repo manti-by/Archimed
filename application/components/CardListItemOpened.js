@@ -6,6 +6,11 @@ export default class CardListItem extends Component {
         card: PropTypes.object.isRequired
     };
 
+    constructor(props) {
+        super(props);
+        this.state = this.props.card;
+    }
+
     handleChange(event) {
         this.setState({text: event.target.value});
     }

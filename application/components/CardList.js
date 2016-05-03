@@ -8,20 +8,12 @@ export default class CardList extends Component {
         actions: PropTypes.object.isRequired
     };
 
-    componentWillMount() {
-        this.serverRequest = $.get('/api', function (result) {
-            if (result.status == 200) {
-                this.setState({ cards: result.data, actions: this.props.actions });
-            }
-        }.bind(this));
-    }
-
-    componentWillUnmount() {
-        this.serverRequest.abort();
-    }
-    
     render() {
         const { cards, actions } = this.props;
+
+        if (!cards || cards.length === 0) {
+            return <div className='archimed-container mdl-grid'>There are no cards</div>;
+        }
 
         return (
             <div className='archimed-container mdl-grid'>

@@ -1,6 +1,6 @@
 import '../assets/css/base.css'
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -10,6 +10,23 @@ import * as CardActions from '../actions/CardActions';
 
 
 class CardApp extends Component {
+
+    static propTypes = {
+        cards: PropTypes.array.isRequired,
+        actions: PropTypes.object.isRequired
+    };
+
+    componentWillMount() {
+        this.serverRequest = $.get('/api', function (result) {
+            if (result.status == 200) {
+                this.setState({ cards: result.data, actions: this.props.actions });
+            }
+        }.bind(this));
+    }
+
+    componentWillUnmount() {
+        this.serverRequest.abort();
+    }
 
     render() {
         const { cards, actions } = this.props;
