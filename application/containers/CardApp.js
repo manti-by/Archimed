@@ -20,6 +20,7 @@ class CardApp extends Component {
         this.serverRequest = $.get('/api', function (result) {
             if (result.status == 200) {
                 this.setState({ cards: result.data, actions: this.props.actions });
+                this.forceUpdate();
             }
         }.bind(this));
     }

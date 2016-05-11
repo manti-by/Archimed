@@ -12,7 +12,12 @@ export default class CardList extends Component {
         const { cards, actions } = this.props;
 
         if (!cards || cards.length === 0) {
-            return <div className='archimed-container mdl-grid'>There are no cards</div>;
+            return (
+                <div className='archimed-container mdl-grid'>
+                    <div className='mdl-typography--headline mdl-cell archimed-header'>Your cards</div>
+                    <div className='card-list-empty'>There are no cards</div>
+                </div>
+            );
         }
 
         return (
