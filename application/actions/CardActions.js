@@ -14,10 +14,10 @@ export function editCard(id) {
     };
 }
 
-export function saveCard(id, text) {
+export function saveCard(card) {
     return {
         type: types.SAVE_CARD,
-        id, text
+        card
     };
 }
 

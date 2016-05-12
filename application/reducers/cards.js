@@ -7,7 +7,12 @@ export default function cards(state = [], action) {
             var id = (state.length === 0) ? 1 : state[0].id + 1;
             return [{
                 id      : id,
-                text    : new Date().toJSON().slice(0,10) + ' ' + id,
+                text    : '90/220 > 40/500 ' + id,
+                from_deg: 90,
+                from_vol: 220,
+                to_deg  : 40,
+                to_vol  : 500,
+                result  : 275,
                 opened  : true
             }, ...state];
 
@@ -21,9 +26,9 @@ export default function cards(state = [], action) {
 
         case SAVE_CARD:
             return sync(state.map(function(card) {
-                if (card.id == action.id) {
+                if (card.id == action.card.id) {
+                    card = action.card;
                     card.opened = false;
-                    card.text = action.text;
                 }
                 return card;
             }));

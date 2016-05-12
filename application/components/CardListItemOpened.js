@@ -1,3 +1,4 @@
+import serialize from 'form-serialize';
 import React, { Component, PropTypes } from 'react';
 
 export default class CardListItem extends Component {
@@ -11,25 +12,59 @@ export default class CardListItem extends Component {
         this.state = this.props.card;
     }
 
-    handleChange(event) {
-        this.setState({text: event.target.value});
+    data() {
+        var data = serialize(this.refs.form, { hash: true });
+        data.text = data.from_deg + '/' + data.from_vol + ' > ' + data.to_deg + '/' + data.to_vol;
+        data.result = data.from_vol * (data.from_deg / data.to_deg + 1);
+        return data;
     }
 
-    handleSave() {
-        this.props.saveCard(this.props.card.id, this.state.text);
+    handleChange() {
+        var data = this.data();
+        this.refs.result.innerHTML = data.result;
+        this.setState(data);
     }
 
-    handleCancel() {
-        this.props.saveCard(this.props.card.id, this.props.card.text);
+    handleSave(event) {
+        event.preventDefault();
+
+        var data = this.data();
+        this.refs.result.innerHTML = data.result;
+        this.props.saveCard(data);
+    }
+
+    handleCancel(event) {
+        event.preventDefault();
+        this.props.saveCard(this.props.card);
     }
 
     render () {
         const {card} = this.props;
 
         return (
-            <div>
+            <form ref="form">
+                <input type="hidden" name="id" defaultValue={card.id} />
+
                 <input type="text" name="text" placeholder="Name" defaultValue={card.text}
                        className="mdl-textfield__input" onChange={::this.handleChange} />
+
+                <div className="spacer">
+
+                    <input type="text" name="from_deg" placeholder="90" defaultValue={card.from_deg}
+                           className="mdl-textfield__input" onChange={::this.handleChange} />
+
+                    <input type="text" name="from_vol" placeholder="220" defaultValue={card.from_vol}
+                           className="mdl-textfield__input" onChange={::this.handleChange} />
+
+                    <input type="text" name="to_deg" placeholder="40" defaultValue={card.to_deg}
+                           className="mdl-textfield__input" onChange={::this.handleChange} />
+
+                    <input type="text" name="to_vol" placeholder="500" defaultValue={card.to_vol}
+                           className="mdl-textfield__input" onChange={::this.handleChange} />
+
+                    <div className="result" ref="result"></div>
+
+                </div>
 
                 <div className="card-actions">
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--primary"
@@ -41,7 +76,7 @@ export default class CardListItem extends Component {
                         Cancel
                     </button>
                 </div>
-            </div>
+            </form>
         );
     }
 
