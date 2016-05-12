@@ -1,20 +1,22 @@
 import { ADD_CARD, EDIT_CARD, SAVE_CARD, DELETE_CARD } from '../constants/ActionTypes';
-import sync from './sync';
+import { sync, getCardResult, getCardLabel } from '../actions/CardActions';
 
 export default function cards(state = [], action) {
     switch (action.type) {
         case ADD_CARD:
-            var id = (state.length === 0) ? 1 : state[0].id + 1;
-            return [{
-                id      : id,
-                text    : '90/220 > 40/500 ' + id,
-                from_deg: 90,
-                from_vol: 220,
-                to_deg  : 40,
-                to_vol  : 500,
-                result  : 275,
-                opened  : true
-            }, ...state];
+            var card = {
+                    id      : (state.length === 0) ? 1 : state[0].id + 1,
+                    from_deg: 90,
+                    from_vol: 220,
+                    to_deg  : 40,
+                    to_vol  : 500,
+                    opened  : true
+                };
+
+            card.result = getCardResult(card);
+            card.text = getCardLabel(card);
+
+            return [card, ...state];
 
         case EDIT_CARD:
             return state.map(function(card) {

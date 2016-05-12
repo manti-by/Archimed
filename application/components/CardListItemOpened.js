@@ -1,5 +1,7 @@
 import serialize from 'form-serialize';
 import React, { Component, PropTypes } from 'react';
+import NumberInput from './NumberInput'
+import { getCardResult, getCardLabel } from '../actions/CardActions';
 
 export default class CardListItem extends Component {
 
@@ -14,23 +16,18 @@ export default class CardListItem extends Component {
 
     data() {
         var data = serialize(this.refs.form, { hash: true });
-        data.text = data.from_deg + '/' + data.from_vol + ' > ' + data.to_deg + '/' + data.to_vol;
-        data.result = data.from_vol * (data.from_deg / data.to_deg + 1);
+        data.result = getCardResult(data);
+        data.text = getCardLabel(data);
         return data;
     }
 
     handleChange() {
-        var data = this.data();
-        this.refs.result.innerHTML = data.result;
-        this.setState(data);
+        this.setState(this.data());
     }
 
     handleSave(event) {
         event.preventDefault();
-
-        var data = this.data();
-        this.refs.result.innerHTML = data.result;
-        this.props.saveCard(data);
+        this.props.saveCard(this.data());
     }
 
     handleCancel(event) {
@@ -45,25 +42,18 @@ export default class CardListItem extends Component {
             <form ref="form">
                 <input type="hidden" name="id" defaultValue={card.id} />
 
-                <input type="text" name="text" placeholder="Name" defaultValue={card.text}
-                       className="mdl-textfield__input" onChange={::this.handleChange} />
-
-                <div className="spacer">
-
-                    <input type="text" name="from_deg" placeholder="90" defaultValue={card.from_deg}
+                <div className="mdl-textfield mdl-js-textfield">
+                    <input type="text" name="text" placeholder="Name" defaultValue={card.text}
                            className="mdl-textfield__input" onChange={::this.handleChange} />
+                </div>
 
-                    <input type="text" name="from_vol" placeholder="220" defaultValue={card.from_vol}
-                           className="mdl-textfield__input" onChange={::this.handleChange} />
+                <div className="calc mdl-textfield mdl-js-textfield">
+                    <NumberInput name="from_deg" value={card.from_deg} placeholder="90" onChange={::this.handleChange} />
+                    <NumberInput name="from_vol" value={card.from_vol} placeholder="220" onChange={::this.handleChange} />
+                    <NumberInput name="to_deg" value={card.to_deg} placeholder="40" onChange={::this.handleChange} />
+                    <NumberInput name="to_vol" value={card.to_vol} placeholder="500" onChange={::this.handleChange} />
 
-                    <input type="text" name="to_deg" placeholder="40" defaultValue={card.to_deg}
-                           className="mdl-textfield__input" onChange={::this.handleChange} />
-
-                    <input type="text" name="to_vol" placeholder="500" defaultValue={card.to_vol}
-                           className="mdl-textfield__input" onChange={::this.handleChange} />
-
-                    <div className="result" ref="result"></div>
-
+                    <div className="result">{card.result}</div>
                 </div>
 
                 <div className="card-actions">

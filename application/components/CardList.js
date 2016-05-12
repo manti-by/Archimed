@@ -13,18 +13,18 @@ export default class CardList extends Component {
 
         if (!cards || cards.length === 0) {
             return (
-                <div className='archimed-container mdl-grid'>
-                    <div className='mdl-typography--headline mdl-cell archimed-header'>Your cards</div>
-                    <div className='card-list-empty'>There are no cards</div>
+                <div className="archimed-container mdl-grid">
+                    <div className="mdl-typography--headline mdl-cell archimed-header">Your cards</div>
+                    <div className="card-list-empty">There are no cards</div>
                 </div>
             );
         }
 
         return (
-            <div className='archimed-container mdl-grid'>
-                <div className='mdl-typography--headline mdl-cell archimed-header'>Your cards</div>
-                <div className='card-list-wrap'>
-                    <ul className='card-list mdl-list'>
+            <div className="archimed-container mdl-grid">
+                <div className="mdl-typography--headline mdl-cell archimed-header">Your cards</div>
+                <div className="card-list-wrap">
+                    <ul className="card-list mdl-list">
                         {
                             cards.map(card =>
                                 <CardListItem key={card.id} card={card} {...actions} />

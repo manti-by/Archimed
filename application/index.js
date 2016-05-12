@@ -1,7 +1,7 @@
-import './node_modules/react-mdl/extra/material.min.css'
-import './node_modules/react-mdl/extra/material.min.js'
+import './node_modules/react-mdl/extra/material.min.css';
+import './node_modules/react-mdl/extra/material.min.js';
 
-import React from 'react'
+import React from 'react';
 import { render } from 'react-dom';
 import configureStore from './store/configure';
 import App from './containers/App';

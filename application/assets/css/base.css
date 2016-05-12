@@ -7,6 +7,10 @@
     color: #FFF;
 }
 
+.archimed-layout main {
+    display: block;
+}
+
 .archimed-container {
     width: 100%;
     max-width: 900px;
@@ -77,6 +81,11 @@
     width: 100%;
     margin-bottom: 5px;
     padding: 5px 0;
+    outline: none;
+}
+
+.card-list-item input:active,
+.card-list-item input:hover {
 }
 
 .card-list-item .card-actions {

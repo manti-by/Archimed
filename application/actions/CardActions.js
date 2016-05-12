@@ -27,3 +27,20 @@ export function deleteCard(id) {
         id
     };
 }
+
+var request;
+export function sync(state = []) {
+    request && request.abort();
+    request = $.post('/api', { data: JSON.stringify(state) });
+    return state;
+}
+
+export function getCardResult(card) {
+    return card.from_vol * (card.from_deg / card.to_deg - 1);
+}
+
+export function getCardLabel(card) {
+    return card.from_deg + '% / ' + card.from_vol + 'ml' +
+        ' > ' + card.to_deg + '% / ' + card.to_vol + 'ml' +
+        ' = ' + card.result + 'ml';
+}
