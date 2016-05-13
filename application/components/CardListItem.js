@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import CardListItemOpened from './CardListItemOpened'
 import CardListItemClosed from './CardListItemClosed'
 
+
 export default class CardListItem extends Component {
 
     static propTypes = {

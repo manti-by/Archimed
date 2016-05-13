@@ -1,6 +1,14 @@
 {
+  "Name": "Название",
+  "Save": "Сохранить",
   "Update": "Обновить",
   "Cancel": "Отмена",
   "Your cards": "Ваши карты",
-  "There are no cards": "Нет карт для отображения"
+  "There are no cards": "Нет карт для отображения",
+  "Original %": "Крепость спирта",
+  "Original volume, ml": "Объем спирта, мл",
+  "Summary %": "Итоговая крепость",
+  "Summary volume, ml": "Итоговый объем, мл",
+  "Input is not a number!": "Введите число!",
+  "Thinner volume, ml": "Объем разбавителя, мл"
 }

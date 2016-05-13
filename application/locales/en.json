@@ -1,6 +1,14 @@
 {
+  "Name": "Name",
+  "Save": "Save",
   "Update": "Update",
   "Cancel": "Cancel",
   "Your cards": "Your cards",
-  "There are no cards": "There are no cards"
+  "There are no cards": "There are no cards",
+  "Original %": "Original %",
+  "Original volume, ml": "Original volume, ml",
+  "Summary %": "Summary %",
+  "Summary volume, ml": "Summary volume, ml",
+  "Input is not a number!": "Input is not a number!",
+  "Thinner volume, ml": "Thinner volume, ml"
 }

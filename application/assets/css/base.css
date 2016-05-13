@@ -19,6 +19,10 @@
     padding: 0;
 }
 
+.archimed-header {
+    padding-left: 0;
+}
+
 .card-list-empty {
     display: block;
     width: 100%;
@@ -62,6 +66,8 @@
 
 .card-list-item {
     display: block;
+    margin-bottom: 5px;
+    padding: 10px 15px;
     line-height: normal;
     background: #FFF;
 }
@@ -69,20 +75,13 @@
 .card-list-item .card-name {
     float: left;
     width: 80%;
-    padding-top: 5px;
+    padding-top: 8px;
 }
 
 .card-list-item .actions {
     float: left;
     text-align: right;
     width: 20%;
-}
-
-.card-list-item input {
-    width: 100%;
-    margin-bottom: 5px;
-    padding: 5px 0;
-    outline: none;
 }
 
 .card-list-item input:active,
@@ -99,7 +98,5 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .archimed-header {
-        padding-left: 50px;
-    }
+
 }

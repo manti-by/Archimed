@@ -1,4 +1,4 @@
-import '../assets/css/base.css'
+import '../assets/css/base.css';
 
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
@@ -11,16 +11,18 @@ import * as CardActions from '../actions/CardActions';
 
 class CardApp extends Component {
 
-    static propTypes = {
-        cards: PropTypes.array.isRequired,
-        actions: PropTypes.object.isRequired
-    };
+    constructor(props, context) {
+        super(props, context);
 
-    componentWillMount() {
+        this.state = {
+            cards: []
+        };
+    }
+
+    componentDidMount() {
         this.serverRequest = $.get('/api', function (result) {
             if (result.status == 200) {
-                this.setState({ cards: result.data, actions: this.props.actions });
-                this.forceUpdate();
+                this.setState({ cards: result.data });
             }
         }.bind(this));
     }
@@ -30,11 +32,11 @@ class CardApp extends Component {
     }
 
     render() {
-        const { cards, actions } = this.props;
+        const actions = this.props.actions;
 
         return (
             <div>
-                <CardList cards={cards} actions={actions} />
+                <CardList cards={this.state.cards} actions={actions} />
                 <AddButton onClick={actions.addCard} />
             </div>
         );

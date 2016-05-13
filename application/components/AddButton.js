@@ -1,18 +1,15 @@
-import React from 'react'
-import Button from './Button'
+import React, { Component, PropTypes } from 'react';
+import { FABButton, Icon } from 'react-mdl';
 
-export default class AddButton extends Button {
 
-    getClass() {
-        return 'archimed-add-button mdl-button mdl-js-button mdl-button--fab mdl-button--colored';
-    }
+export default class AddButton extends Component {
 
     render() {
-        const { text, onClick } = this.props;
+        const { onClick } = this.props;
         return (
-            <button onClick={onClick} className={this.getClass()}>
-                <i className={'material-icons'}>add</i>
-            </button>
+            <FABButton className="archimed-add-button" onClick={onClick} colored>
+                <Icon name="add" />
+            </FABButton>
         )
     }
 }

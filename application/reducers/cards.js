@@ -1,6 +1,7 @@
 import { ADD_CARD, EDIT_CARD, SAVE_CARD, DELETE_CARD } from '../constants/ActionTypes';
 import { sync, getCardResult, getCardLabel } from '../actions/CardActions';
 
+
 export default function cards(state = [], action) {
     switch (action.type) {
         case ADD_CARD:

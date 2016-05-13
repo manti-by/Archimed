@@ -36,7 +36,7 @@ export function sync(state = []) {
 }
 
 export function getCardResult(card) {
-    return card.from_vol * (card.from_deg / card.to_deg - 1);
+    return Math.round(card.from_vol * (card.from_deg / card.to_deg - 1));
 }
 
 export function getCardLabel(card) {

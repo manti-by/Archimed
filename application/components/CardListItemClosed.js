@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
+
 export default class CardListItemClosed extends Component {
 
     static propTypes = {
@@ -9,7 +10,7 @@ export default class CardListItemClosed extends Component {
     };
 
     render () {
-        const {card, editCard, deleteCard} = this.props;
+        const { card, editCard, deleteCard } = this.props;
 
         return (
             <div>

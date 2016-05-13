@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import CardListItem from './CardListItem';
 
+
 export default class CardList extends Component {
 
     static propTypes = {

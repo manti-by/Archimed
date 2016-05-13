@@ -1,7 +1,8 @@
 import serialize from 'form-serialize';
 import React, { Component, PropTypes } from 'react';
-import NumberInput from './NumberInput'
+import { Button, Textfield } from 'react-mdl';
 import { getCardResult, getCardLabel } from '../actions/CardActions';
+
 
 export default class CardListItem extends Component {
 
@@ -17,7 +18,7 @@ export default class CardListItem extends Component {
     data() {
         var data = serialize(this.refs.form, { hash: true });
         data.result = getCardResult(data);
-        data.text = getCardLabel(data);
+        data.text = data.text ? data.text : getCardLabel(data);
         return data;
     }
 
@@ -36,35 +37,32 @@ export default class CardListItem extends Component {
     }
 
     render () {
-        const {card} = this.props;
+        const card = this.state ? this.state : this.props.card;
+        var num_error = __('Input is not a number!');
 
         return (
-            <form ref="form">
+            <form ref="form" onChange={::this.handleChange}>
                 <input type="hidden" name="id" defaultValue={card.id} />
 
-                <div className="mdl-textfield mdl-js-textfield">
-                    <input type="text" name="text" placeholder="Name" defaultValue={card.text}
-                           className="mdl-textfield__input" onChange={::this.handleChange} />
-                </div>
+                <Textfield label={__('Name')} name="name" value={card.text} onChange={() => {}} floatingLabel />
 
-                <div className="calc mdl-textfield mdl-js-textfield">
-                    <NumberInput name="from_deg" value={card.from_deg} placeholder="90" onChange={::this.handleChange} />
-                    <NumberInput name="from_vol" value={card.from_vol} placeholder="220" onChange={::this.handleChange} />
-                    <NumberInput name="to_deg" value={card.to_deg} placeholder="40" onChange={::this.handleChange} />
-                    <NumberInput name="to_vol" value={card.to_vol} placeholder="500" onChange={::this.handleChange} />
+                <Textfield label={__('Original %')} name="from_deg" value={card.from_deg} onChange={() => {}}
+                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
 
-                    <div className="result">{card.result}</div>
-                </div>
+                <Textfield label={__('Original volume, ml')} name="from_vol" value={card.from_vol} onChange={() => {}}
+                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
+
+                <Textfield label={__('Summary %')} name="to_deg" value={card.to_deg} onChange={() => {}}
+                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
+
+                <Textfield label={__('Summary volume, ml')} name="to_vol" value={card.to_vol} onChange={() => {}}
+                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
+
+                <div className="result">{__('Thinner volume, ml')}: <b>{card.result}</b></div>
 
                 <div className="card-actions">
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--primary"
-                            onClick={::this.handleSave}>
-                        {__('Update')}
-                    </button>
-                    <button className="mdl-button mdl-js-button mdl-button--raised"
-                            onClick={::this.handleCancel}>
-                        {__('Cancel')}
-                    </button>
+                    <Button raised colored onClick={::this.handleSave}>{__('Save')}</Button>
+                    <Button raised onClick={::this.handleCancel}>{__('Cancel')}</Button>
                 </div>
             </form>
         );
