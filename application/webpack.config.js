@@ -1,8 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
+
 var devFlagPlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
 });
+
+var I18nPlugin = require('i18n-webpack-plugin');
+var languages = {
+    en: require('./locales/en.json'),
+    ru: require('./locales/ru.json')
+};
 
 module.exports = {
     devtool: 'eval',
@@ -22,6 +29,7 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
+        new I18nPlugin(languages['ru']),
         devFlagPlugin
     ],
     module: {
@@ -45,6 +53,10 @@ module.exports = {
                 loader: 'babel',
                 include: __dirname,
                 exclude: /node_modules/
+            },
+            {
+                test: /\.json$/,
+                loader: 'json'
             }
         ]
     },

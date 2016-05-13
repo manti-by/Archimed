@@ -59,11 +59,11 @@ export default class CardListItem extends Component {
                 <div className="card-actions">
                     <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--primary"
                             onClick={::this.handleSave}>
-                        Update
+                        {__('Update')}
                     </button>
                     <button className="mdl-button mdl-js-button mdl-button--raised"
                             onClick={::this.handleCancel}>
-                        Cancel
+                        {__('Cancel')}
                     </button>
                 </div>
             </form>

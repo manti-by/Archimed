@@ -18,6 +18,8 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "form-serialize": "^0.7.1",
+    "i18n-webpack-plugin": "^0.2.7",
+    "json-loader": "^0.5.4",
     "json-stringify-safe": "^5.0.1",
     "html-webpack-plugin": "^2.15.0",
     "mongodb": "^2.1.17",
