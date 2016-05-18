@@ -11,14 +11,6 @@ import * as CardActions from '../actions/CardActions';
 
 class CardApp extends Component {
 
-    constructor(props, context) {
-        super(props, context);
-
-        this.state = {
-            cards: []
-        };
-    }
-
     componentDidMount() {
         this.serverRequest = $.get('/api', function (result) {
             if (result.status == 200) {
@@ -32,11 +24,11 @@ class CardApp extends Component {
     }
 
     render() {
-        const actions = this.props.actions;
+        const { cards, actions } = this.props;
 
         return (
             <div>
-                <CardList cards={this.state.cards} actions={actions} />
+                <CardList cards={cards} actions={actions} />
                 <AddButton onClick={actions.addCard} />
             </div>
         );
