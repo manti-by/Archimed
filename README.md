@@ -16,7 +16,7 @@ $ vagrant up
 $ vagrant ssh
 ```
 
-Updating system packages:
+Update system packages:
 
 ```
 $ sudo apt-get update
@@ -29,11 +29,11 @@ Remove default system NodeJS and NPM
 sudo apt-get remove nodejs npm
 ```
 
-Install latest NodeJS server
+Install latest NodeJS server, NPM and MongoDB
 
 ```
 $ curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
-$ sudo apt-get install -y nodejs
+$ sudo apt-get install -y nodejs mongodb-server mongodb-clients build-essential
 ```
 
 Install NPM packages and run server:
