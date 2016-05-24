@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import { sync, getCardResult, getCardLabel } from '../actions/CardActions';
+import { sync, getCardResult, getCardFullVolume, getCardLabel } from '../actions/CardActions';
 
 
 export default function cards(state = [], action) {
