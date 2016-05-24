@@ -1,10 +1,10 @@
-import { ADD_CARD, EDIT_CARD, SAVE_CARD, DELETE_CARD } from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes';
 import { sync, getCardResult, getCardLabel } from '../actions/CardActions';
 
 
 export default function cards(state = [], action) {
     switch (action.type) {
-        case ADD_CARD:
+        case types.ADD_CARD:
             var card = {
                     id      : (state.length === 0) ? 1 : state[0].id + 1,
                     from_deg: 90,
@@ -19,7 +19,7 @@ export default function cards(state = [], action) {
 
             return [card, ...state];
 
-        case EDIT_CARD:
+        case types.EDIT_CARD:
             return state.map(function(card) {
                 if (card.id == action.id) {
                     card.opened = true;
@@ -27,7 +27,7 @@ export default function cards(state = [], action) {
                 return card;
             });
 
-        case SAVE_CARD:
+        case types.SAVE_CARD:
             return sync(state.map(function(card) {
                 if (card.id == action.card.id) {
                     card = action.card;
@@ -36,10 +36,13 @@ export default function cards(state = [], action) {
                 return card;
             }));
 
-        case DELETE_CARD:
+        case types.DELETE_CARD:
             return sync(state.filter(card =>
                 card.id !== action.id
             ));
+
+        case types.LOAD_CARD_LIST:
+            return state.concat(action.cards);
 
         default:
             return state;

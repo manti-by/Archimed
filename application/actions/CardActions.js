@@ -28,6 +28,13 @@ export function deleteCard(id) {
     };
 }
 
+export function loadCardList(cards) {
+    return {
+        type: types.LOAD_CARD_LIST,
+        cards
+    };
+}
+
 var request;
 export function sync(state = []) {
     request && request.abort();

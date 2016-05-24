@@ -47,7 +47,7 @@ module.exports.setCards = function(request, response) {
 
                 var data = JSON.parse(request.body.data);
                 for (var i = 0; i < data.length; i++) {
-                    collection.insertOne(data[i], function (error) {
+                    collection.insert(data[i], function (error) {
                         if (error) {
                             console.log(error);
                             result = {status: 500, message: error};
