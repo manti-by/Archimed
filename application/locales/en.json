@@ -10,5 +10,6 @@
   "Summary %": "Summary %",
   "Summary volume, ml": "Summary volume, ml",
   "Input is not a number!": "Input is not a number!",
-  "Thinner volume, ml": "Thinner volume, ml"
+  "Thinner volume, ml": "Thinner volume, ml",
+  "Not enough original volume": "Not enough original volume"
 }

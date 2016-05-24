@@ -10,11 +10,11 @@ export default function cards(state = [], action) {
                     from_deg: 90,
                     from_vol: 220,
                     to_deg  : 40,
-                    to_vol  : 500,
                     opened  : true
                 };
 
             card.result = getCardResult(card);
+            card.to_vol = getCardFullVolume(card);
             card.text = getCardLabel(card);
 
             return [card, ...state];

@@ -1,7 +1,7 @@
 import serialize from 'form-serialize';
 import React, { Component, PropTypes } from 'react';
 import { Button, Textfield } from 'react-mdl';
-import { getCardResult, getCardLabel } from '../actions/CardActions';
+import { getCardResult, getCardFullVolume, getCardLabel } from '../actions/CardActions';
 
 
 export default class CardListItem extends Component {
@@ -18,6 +18,7 @@ export default class CardListItem extends Component {
     data() {
         var data = serialize(this.refs.form, { hash: true });
         data.result = getCardResult(data);
+        data.to_vol = getCardFullVolume(data);
         data.text = data.text ? data.text : getCardLabel(data);
         return data;
     }

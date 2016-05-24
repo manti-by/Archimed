@@ -10,5 +10,6 @@
   "Summary %": "Итоговая крепость",
   "Summary volume, ml": "Итоговый объем, мл",
   "Input is not a number!": "Введите число!",
-  "Thinner volume, ml": "Объем разбавителя, мл"
+  "Thinner volume, ml": "Объем разбавителя, мл",
+  "Not enough original volume": "Не достаточно спирта"
 }
