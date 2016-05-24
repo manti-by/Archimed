@@ -9,7 +9,7 @@
 
 .archimed-layout main {
     display: block;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .archimed-container {

@@ -43,7 +43,8 @@ export function sync(state = []) {
 }
 
 export function getCardResult(card) {
-    return Math.round(card.from_vol * (card.from_deg / card.to_deg - 1));
+    var result = Math.round(card.from_vol * (card.from_deg / card.to_deg - 1));
+    return result > 0 ? result : 'error';
 }
 
 export function getCardLabel(card) {
