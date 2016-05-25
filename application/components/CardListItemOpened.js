@@ -1,7 +1,7 @@
 import serialize from 'form-serialize';
 import React, { Component, PropTypes } from 'react';
 import { Button, Textfield } from 'react-mdl';
-import { getCardResult, getCardFullVolume, getCardLabel } from '../actions/CardActions';
+import { getCardResult, getCardFullVolume, getCardLabel } from '../actions/CalcActions';
 
 
 export default class CardListItem extends Component {
@@ -46,24 +46,21 @@ export default class CardListItem extends Component {
                 <input type="hidden" name="id" defaultValue={card.id} />
 
                 <Textfield label={__('Name')} name="name" value={card.text} onChange={() => {}}
-                           autocomplete="off" floatingLabel />
+                           autoComplete="off" floatingLabel />
 
                 <Textfield label={__('Original %')} name="from_deg" value={card.from_deg}
                            onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
-                           autocomplete="off" floatingLabel required />
+                           autoComplete="off" floatingLabel required />
 
                 <Textfield label={__('Original volume, ml')} name="from_vol" value={card.from_vol}
                            onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
-                           autocomplete="off" floatingLabel required />
+                           autoComplete="off" floatingLabel required />
 
                 <Textfield label={__('Summary %')} name="to_deg" value={card.to_deg}
                            onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
-                           autocomplete="off" floatingLabel required />
+                           autoComplete="off" floatingLabel required />
 
-                <Textfield label={__('Summary volume, ml')} name="to_vol" value={card.to_vol}
-                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
-                           autocomplete="off" floatingLabel required />
-
+                <div className="volume">{__('Summary volume, ml')}: <b>{card.to_vol}</b></div>
                 <div className="result">{__('Thinner volume, ml')}: <b>{card.result}</b></div>
 
                 <div className="card-actions">
