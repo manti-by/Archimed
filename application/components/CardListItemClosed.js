@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { IconButton, ListItem, ListItemContent, ListItemAction } from 'react-mdl';
 
 
 export default class CardListItemClosed extends Component {
@@ -13,21 +14,19 @@ export default class CardListItemClosed extends Component {
         const { card, editCard, deleteCard } = this.props;
 
         return (
-            <div>
-                <div className='mdl-list__item-primary-content card-name'>
+            <ListItem className="mdl-shadow--2dp">
+                <ListItemContent onClick={() => editCard(card.id)}>
                     { card.text }
-                </div>
-                <div className='mdl-list__item-secondary-action actions'>
-                    <button className='mdl-button mdl-js-button mdl-button--icon'
-                            onClick={() => editCard(card.id)}>
-                        <i className='material-icons'>mode_edit</i>
-                    </button>
-                    <button className='mdl-button mdl-js-button mdl-button--icon'
-                            onClick={() => deleteCard(card.id)}>
-                        <i className='material-icons'>delete</i>
-                    </button>
-                </div>
-            </div>
+                </ListItemContent>
+
+                <ListItemAction>
+                    <IconButton name="mode_edit" onClick={() => editCard(card.id)} />
+                </ListItemAction>
+
+                <ListItemAction>
+                    <IconButton name="delete" onClick={() => deleteCard(card.id)} />
+                </ListItemAction>
+            </ListItem>
         );
     }
 

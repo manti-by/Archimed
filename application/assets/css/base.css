@@ -1,6 +1,8 @@
 .archimed-layout {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
-    background: url(../images/bg.jpg) center / cover;
+    height: auto;
+    min-height: 100%;
+    background: url(../images/bg.jpg) center top;
 }
 .archimed-layout .mdl-layout__header,
 .archimed-layout .mdl-layout__drawer-button {
@@ -20,7 +22,14 @@
 }
 
 .archimed-header {
-    padding-left: 0;
+    margin: 0 10px;
+    padding: 16px 15px 14px 15px;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: .02em;
+    font-weight: 400;
+    color: #FFF;
 }
 
 .card-list-empty {
@@ -42,63 +51,48 @@
     z-index: 900;
 }
 
-.archimed-header {
-    margin: 0 10px;
-    padding: 16px 15px 14px 15px;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-size: 20px;
-    line-height: 1;
-    letter-spacing: .02em;
-    font-weight: 400;
-    color: #FFF;
-}
-
 .card-list-wrap {
     position: relative;
     width: 100%;
     margin: 0 10px;
 }
 
-.card-list {
-    width: 100%;
-    margin: 0;
+.mdl-list {
+    margin-top: 0;
 }
 
-.card-list-item {
-    position: relative;
-    display: block;
-    margin-bottom: 5px;
-    padding: 10px 15px;
-    line-height: normal;
+.mdl-list__item {
+    margin-bottom: 3px;
     background: #FFF;
 }
 
-.card-list-item .card-name {
-    float: left;
-    width: 75%;
-    padding-top: 8px;
+.mdl-list__item .mdl-list__item-secondary-content {
+    margin-left: 0;
 }
 
-.card-list-item .actions {
-    position: absolute;
-    top: 19%;
-    right: 2%;
-    text-align: right;
+.mdl-card {
+    width: auto;
 }
 
-.card-list-item .mdl-textfield {
+.mdl-card__title,
+.mdl-card__supporting-text,
+.mdl-card__actions {
+    padding: 0;
+}
+
+.mdl-textfield {
     width: 100%;
 }
 
-.card-list-item .card-actions {
-    margin-top: 15px;
-    text-align: right;
+.mdl-card__supporting-text {
+    width: 100%;
 }
 
-.card-list-item .card-actions button {
-    margin-left: 10px;
+.mdl-card__actions {
+    margin-top: 10px;
+    padding-top: 10px;
 }
 
-@media screen and (max-width: 1000px) {
-
+.mdl-card__actions button {
+    margin-right: 10pt;
 }

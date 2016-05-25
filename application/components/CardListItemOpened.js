@@ -1,6 +1,6 @@
 import serialize from 'form-serialize';
 import React, { Component, PropTypes } from 'react';
-import { Button, Textfield } from 'react-mdl';
+import { Button, Textfield, ListItem, Card, CardTitle, CardText, CardActions } from 'react-mdl';
 import { getCardResult, getCardFullVolume, getCardLabel } from '../actions/CalcActions';
 
 
@@ -42,32 +42,42 @@ export default class CardListItem extends Component {
         var num_error = __('Input is not a number!');
 
         return (
-            <form ref="form" onChange={::this.handleChange}>
-                <input type="hidden" name="id" defaultValue={card.id} />
+            <ListItem>
+                <form ref="form" onChange={::this.handleChange}>
+                    <input type="hidden" name="id" defaultValue={card.id} />
 
-                <Textfield label={__('Name')} name="name" value={card.text} onChange={() => {}}
-                           autoComplete="off" floatingLabel />
+                    <Card>
+                        <CardTitle>
+                            <Textfield label={__('Name')} name="name" value={card.text} onChange={() => {}}
+                                       autoComplete="off" floatingLabel />
+                        </CardTitle>
 
-                <Textfield label={__('Original %')} name="from_deg" value={card.from_deg}
-                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
-                           autoComplete="off" floatingLabel required />
+                        <CardText>
+                            <Textfield label={__('Original %')} name="from_deg" value={card.from_deg}
+                                       onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
+                                       autoComplete="off" floatingLabel required />
 
-                <Textfield label={__('Original volume, ml')} name="from_vol" value={card.from_vol}
-                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
-                           autoComplete="off" floatingLabel required />
+                            <Textfield label={__('Original volume, ml')} name="from_vol" value={card.from_vol}
+                                       onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
+                                       autoComplete="off" floatingLabel required />
 
-                <Textfield label={__('Summary %')} name="to_deg" value={card.to_deg}
-                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
-                           autoComplete="off" floatingLabel required />
+                            <Textfield label={__('Summary %')} name="to_deg" value={card.to_deg}
+                                       onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
+                                       autoComplete="off" floatingLabel required />
 
-                <div className="volume">{__('Summary volume, ml')}: <b>{card.to_vol}</b></div>
-                <div className="result">{__('Thinner volume, ml')}: <b>{card.result}</b></div>
+                            <div className="volume">{__('Summary volume, ml')}: <b>{card.to_vol}</b></div>
+                            <div className="result">{__('Thinner volume, ml')}: <b>{card.result}</b></div>
+                        </CardText>
 
-                <div className="card-actions">
-                    <Button raised colored onClick={::this.handleSave}>{__('Save')}</Button>
-                    <Button raised onClick={::this.handleCancel}>{__('Cancel')}</Button>
-                </div>
-            </form>
+                        <CardActions border>
+
+                            <Button raised colored onClick={::this.handleSave}>{__('Save')}</Button>
+                            <Button raised onClick={::this.handleCancel}>{__('Cancel')}</Button>
+
+                        </CardActions>
+                    </Card>
+                </form>
+            </ListItem>
         );
     }
 

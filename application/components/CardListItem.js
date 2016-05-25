@@ -13,20 +13,13 @@ export default class CardListItem extends Component {
     };
 
     render () {
-        const {card, editCard, saveCard, deleteCard} = this.props;
+        const { card, editCard, saveCard, deleteCard } = this.props;
 
-        var content;
         if (card.opened) {
-            content = <CardListItemOpened key={card.id} card={card} saveCard={saveCard} />
+            return (<CardListItemOpened key={card.id} card={card} saveCard={saveCard} />);
         } else {
-            content = <CardListItemClosed key={card.id} card={card} editCard={editCard} deleteCard={deleteCard} />
+            return (<CardListItemClosed key={card.id} card={card} editCard={editCard} deleteCard={deleteCard} />);
         }
-
-        return (
-            <li className='card-list-item mdl-list__item mdl-shadow--2dp'>
-                {content}
-            </li>
-        );
     }
 
 }
