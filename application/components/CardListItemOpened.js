@@ -45,19 +45,24 @@ export default class CardListItem extends Component {
             <form ref="form" onChange={::this.handleChange}>
                 <input type="hidden" name="id" defaultValue={card.id} />
 
-                <Textfield label={__('Name')} name="name" value={card.text} onChange={() => {}} floatingLabel />
+                <Textfield label={__('Name')} name="name" value={card.text} onChange={() => {}}
+                           autocomplete="off" floatingLabel />
 
-                <Textfield label={__('Original %')} name="from_deg" value={card.from_deg} onChange={() => {}}
-                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
+                <Textfield label={__('Original %')} name="from_deg" value={card.from_deg}
+                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
+                           autocomplete="off" floatingLabel required />
 
-                <Textfield label={__('Original volume, ml')} name="from_vol" value={card.from_vol} onChange={() => {}}
-                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
+                <Textfield label={__('Original volume, ml')} name="from_vol" value={card.from_vol}
+                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
+                           autocomplete="off" floatingLabel required />
 
-                <Textfield label={__('Summary %')} name="to_deg" value={card.to_deg} onChange={() => {}}
-                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
+                <Textfield label={__('Summary %')} name="to_deg" value={card.to_deg}
+                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
+                           autocomplete="off" floatingLabel required />
 
-                <Textfield label={__('Summary volume, ml')} name="to_vol" value={card.to_vol} onChange={() => {}}
-                           pattern="-?[0-9]*(\.[0-9]+)?" error={num_error} floatingLabel required />
+                <Textfield label={__('Summary volume, ml')} name="to_vol" value={card.to_vol}
+                           onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
+                           autocomplete="off" floatingLabel required />
 
                 <div className="result">{__('Thinner volume, ml')}: <b>{card.result}</b></div>
 

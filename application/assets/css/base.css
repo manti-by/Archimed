@@ -65,6 +65,7 @@
 }
 
 .card-list-item {
+    position: relative;
     display: block;
     margin-bottom: 5px;
     padding: 10px 15px;
@@ -74,18 +75,19 @@
 
 .card-list-item .card-name {
     float: left;
-    width: 80%;
+    width: 75%;
     padding-top: 8px;
 }
 
 .card-list-item .actions {
-    float: left;
+    position: absolute;
+    top: 28%;
+    right: 2%;
     text-align: right;
-    width: 20%;
 }
 
-.card-list-item input:active,
-.card-list-item input:hover {
+.card-list-item .mdl-textfield {
+    width: 100%;
 }
 
 .card-list-item .card-actions {

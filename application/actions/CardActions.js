@@ -52,6 +52,5 @@ export function getCardFullVolume(card) {
 
 export function getCardLabel(card) {
     return card.from_deg + '% / ' + card.from_vol + 'ml' +
-        ' > ' + card.to_deg + '% / ' + card.to_vol + 'ml' +
-        ' = ' + card.result + 'ml';
+        ' > ' + card.to_deg + '% / ' + card.to_vol + 'ml';
 }
