@@ -2,6 +2,7 @@ import serialize from 'form-serialize';
 import React, { Component, PropTypes } from 'react';
 import { Button, Textfield, ListItem, Card, CardTitle, CardText, CardActions } from 'react-mdl';
 import { getCardResult, getCardFullVolume, getCardLabel } from '../actions/CalcActions';
+import { forecastSolutionVolume } from '../actions/FetmanForecast';
 
 
 export default class CardListItem extends Component {
@@ -19,6 +20,7 @@ export default class CardListItem extends Component {
         var data = serialize(this.refs.form, { hash: true });
         data.result = getCardResult(data);
         data.to_vol = getCardFullVolume(data);
+        data.forecast_vol = forecastSolutionVolume(data.result, 20, data.from_vol, 20, data.from_deg);
         data.text = data.text ? data.text : getCardLabel(data);
         return data;
     }
@@ -65,8 +67,9 @@ export default class CardListItem extends Component {
                                        onChange={() => {}} pattern="-?[0-9]*(\.[0-9]+)?" error={num_error}
                                        autoComplete="off" floatingLabel required />
 
-                            <div className="volume">{__('Summary volume, ml')}: <b>{card.to_vol}</b></div>
                             <div className="result">{__('Thinner volume, ml')}: <b>{card.result}</b></div>
+                            <div className="result">{__('Forecasted volume, ml')}: <b>{card.forecast_vol}</b></div>
+                            <div className="volume">{__('Summary volume, ml')}: <b>{card.to_vol}</b></div>
                         </CardText>
 
                         <CardActions border>
