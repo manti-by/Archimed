@@ -12,5 +12,9 @@
   "Input is not a number!": "Input is not a number!",
   "Thinner volume, ml": "Thinner volume, ml",
   "Forecasted volume, ml": "Forecasted volume, ml",
-  "Not enough original volume": "Not enough original volume"
+  "Not enough original volume": "Not enough original volume",
+  "Water temp, *C": "Water temp, *C",
+  "Spirit temp, *C": "Spirit temp, *C",
+  "Basic params": "Basic params",
+  "Advanced": "Advanced"
 }
