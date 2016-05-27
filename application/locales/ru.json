@@ -11,5 +11,10 @@
   "Summary volume, ml": "Итоговый объем, мл",
   "Input is not a number!": "Введите число!",
   "Thinner volume, ml": "Объем разбавителя, мл",
-  "Not enough original volume": "Не достаточно спирта"
+  "Forecasted volume, ml": "Прогнозируемый объем, мл",
+  "Not enough original volume": "Не достаточно спирта",
+  "Water temp, *C": "Температура воды, *C",
+  "Spirit temp, *C": "Температура спирта, *C",
+  "Basic params": "Базовые пар-ы",
+  "Advanced": "Дополнительно"
 }

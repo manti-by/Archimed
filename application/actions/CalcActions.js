@@ -1,5 +1,5 @@
 export function getCardResult(card) {
-    return Math.round(card.from_vol * (card.from_deg / card.to_deg - 1));
+    return (card.from_vol * (card.from_deg / card.to_deg - 1)).toFixed(2);
 }
 
 export function getCardFullVolume(card) {

@@ -1,23 +1,29 @@
 import * as types from '../constants/ActionTypes';
 import { sync } from '../actions/CardActions';
 import { getCardResult, getCardFullVolume, getCardLabel } from '../actions/CalcActions';
+import { forecastSolutionVolume } from '../actions/FetmanForecast';
 
 
 export default function cards(state = [], action) {
     switch (action.type) {
         case types.ADD_CARD:
             var card = {
-                    id      : (state.length === 0) ? 1 : state[0].id + 1,
-                    from_deg: 90,
-                    from_vol: 220,
-                    to_deg  : 40,
-                    opened  : true
+                    id          : (state.length === 0) ? 1 : state[0].id + 1,
+                    tab_id      : 0,
+                    from_deg    : 90,
+                    from_vol    : 220,
+                    to_deg      : 40,
+                    water_temp  : 20,
+                    spirit_temp : 20,
+                    opened      : true
                 };
 
             card.result = getCardResult(card);
             card.to_vol = getCardFullVolume(card);
             card.text = getCardLabel(card);
-
+            card.forecast_vol = forecastSolutionVolume(
+                card.result, card.water_temp, card.from_vol, card.spirit_temp, card.from_deg
+            );
             return [card, ...state];
 
         case types.EDIT_CARD:

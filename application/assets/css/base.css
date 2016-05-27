@@ -57,6 +57,12 @@
     margin: 0 10px;
 }
 
+.forecast {
+    margin-top: 3px;
+    padding-top: 3px;
+    border-top: 1px dotted #CCC;
+}
+
 .mdl-list {
     margin-top: 0;
 }
