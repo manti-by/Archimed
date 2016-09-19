@@ -16,9 +16,9 @@ export default class CardListItem extends Component {
         const { card, editCard, saveCard, deleteCard } = this.props;
 
         if (card.opened) {
-            return (<CardListItemOpened key={card.id} card={card} saveCard={saveCard} />);
+            return (<CardListItemOpened key={card._id} card={card} saveCard={saveCard} />);
         } else {
-            return (<CardListItemClosed key={card.id} card={card} editCard={editCard} deleteCard={deleteCard} />);
+            return (<CardListItemClosed key={card._id} card={card} editCard={editCard} deleteCard={deleteCard} />);
         }
     }
 

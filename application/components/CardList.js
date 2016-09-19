@@ -27,7 +27,7 @@ export default class CardList extends Component {
                     <List className="card-list">
                         {
                             cards.map(card =>
-                                <CardListItem key={card.id} card={card} {...actions} />
+                                <CardListItem key={card._id} card={card} {...actions} />
                             )
                         }
                     </List>

@@ -7,10 +7,10 @@ export function addCard(name) {
     };
 }
 
-export function editCard(id) {
+export function editCard(card) {
     return {
         type: types.EDIT_CARD,
-        id
+        card
     };
 }
 
@@ -21,10 +21,10 @@ export function saveCard(card) {
     };
 }
 
-export function deleteCard(id) {
+export function deleteCard(card) {
     return {
         type: types.DELETE_CARD,
-        id
+        card
     };
 }
 
@@ -36,8 +36,7 @@ export function loadCardList(cards) {
 }
 
 var request;
-export function sync(state = []) {
+export function sync(data) {
     request && request.abort();
-    request = $.post('/api', { data: JSON.stringify(state) });
-    return state;
+    request = $.post('/api', data);
 }

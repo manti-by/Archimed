@@ -8,7 +8,6 @@ export default function cards(state = [], action) {
     switch (action.type) {
         case types.ADD_CARD:
             var card = {
-                    id          : (state.length === 0) ? 1 : state[0].id + 1,
                     tab_id      : 0,
                     from_deg    : 90,
                     from_vol    : 220,
@@ -28,25 +27,30 @@ export default function cards(state = [], action) {
 
         case types.EDIT_CARD:
             return state.map(function(card) {
-                if (card.id == action.id) {
+                if (card._id == action.card._id) {
                     card.opened = true;
                 }
                 return card;
             });
 
         case types.SAVE_CARD:
-            return sync(state.map(function(card) {
-                if (card.id == action.card.id) {
+            return state.map(function(card) {
+                if (card._id == action.card._id) {
                     card = action.card;
                     card.opened = false;
+                    sync({ action: types.SAVE_CARD, data: card });
                 }
                 return card;
-            }));
+            });
 
         case types.DELETE_CARD:
-            return sync(state.filter(card =>
-                card.id !== action.id
-            ));
+            return state.filter(function(card) {
+                if (card._id == action.card._id) {
+                    sync({ action: types.DELETE_CARD, data: card });
+                } else {
+                    return card;
+                }
+            });
 
         case types.LOAD_CARD_LIST:
             return state.concat(action.cards);
