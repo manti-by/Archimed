@@ -57,7 +57,7 @@ export default class CardListItem extends Component {
         return (
             <ListItem>
                 <form ref="form" onChange={::this.handleChange}>
-                    <input type="hidden" name="id" value={card.id} />
+                    <input type="hidden" name="_id" value={card._id} />
                     <input type="hidden" name="tab_id" value={card.tab_id} />
 
                     <Card>

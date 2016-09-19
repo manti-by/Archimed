@@ -15,16 +15,16 @@ export default class CardListItemClosed extends Component {
 
         return (
             <ListItem className="mdl-shadow--2dp">
-                <ListItemContent onClick={() => editCard(card.id)}>
+                <ListItemContent onClick={() => editCard(card)}>
                     { card.text }
                 </ListItemContent>
 
                 <ListItemAction>
-                    <IconButton name="mode_edit" onClick={() => editCard(card.id)} />
+                    <IconButton name="mode_edit" onClick={() => editCard(card)} />
                 </ListItemAction>
 
                 <ListItemAction>
-                    <IconButton name="delete" onClick={() => deleteCard(card.id)} />
+                    <IconButton name="delete" onClick={() => deleteCard(card)} />
                 </ListItemAction>
             </ListItem>
         );
