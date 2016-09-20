@@ -12,5 +12,5 @@ curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
 sudo apt-get install -y nodejs mongodb-server mongodb-clients build-essential
 echo ""
 echo "*** Installing application requirements ***"
-cd /vagrant/application
+cd /vagrant/app
 npm install

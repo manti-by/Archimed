@@ -4,5 +4,5 @@
 .idea/
 .vagrant/
 
-application/node_modules/
-application/npm-debug.log
+app/node_modules/
+app/npm-debug.log

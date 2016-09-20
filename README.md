@@ -39,7 +39,7 @@ $ sudo apt-get install -y nodejs mongodb-server mongodb-clients build-essential
 Install NPM packages and run server:
 
 ```
-$ cd /vagrant/application
+$ cd /vagrant/app
 $ npm install
 $ npm start
 ```
@@ -55,9 +55,9 @@ $ cd ~/node_modules
 $ mkdir archimed
 $ cd ./archimed
 $ mkdir node_modules
-$ cp /vagrant/application/package.json package.json
+$ cp /vagrant/app/package.json package.json
 $ npm install package.json
-$ cd /vagrant/application
+$ cd /vagrant/app
 $ ln -s ~/node_modules/archimed/node_modules node_modules
 ```
 
