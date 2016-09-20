@@ -36,7 +36,7 @@ export function loadCardList(cards) {
 }
 
 var request;
-export function sync(data) {
+export function sync(action, data) {
     request && request.abort();
-    request = $.post('/api', data);
+    request = $.post('/api', { action: action, data: JSON.stringify(data) });
 }

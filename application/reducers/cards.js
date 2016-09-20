@@ -8,6 +8,7 @@ export default function cards(state = [], action) {
     switch (action.type) {
         case types.ADD_CARD:
             var card = {
+                    _id         : state.length + 1,
                     tab_id      : 0,
                     from_deg    : 90,
                     from_vol    : 220,
@@ -19,10 +20,11 @@ export default function cards(state = [], action) {
 
             card.result = getCardResult(card);
             card.to_vol = getCardFullVolume(card);
-            card.text = getCardLabel(card);
             card.forecast_vol = forecastSolutionVolume(
-                card.result, card.water_temp, card.from_vol, card.spirit_temp, card.from_deg
+                card.result, card.water_temp, card.from_vol, card.spirit_temp, card.from_deg, card.to_deg
             );
+
+            card.text = getCardLabel(card);
             return [card, ...state];
 
         case types.EDIT_CARD:
@@ -38,7 +40,7 @@ export default function cards(state = [], action) {
                 if (card._id == action.card._id) {
                     card = action.card;
                     card.opened = false;
-                    sync({ action: types.SAVE_CARD, data: card });
+                    sync(types.SAVE_CARD, card);
                 }
                 return card;
             });
@@ -46,7 +48,7 @@ export default function cards(state = [], action) {
         case types.DELETE_CARD:
             return state.filter(function(card) {
                 if (card._id == action.card._id) {
-                    sync({ action: types.DELETE_CARD, data: card });
+                    sync(types.DELETE_CARD, card);
                 } else {
                     return card;
                 }

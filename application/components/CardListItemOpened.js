@@ -19,14 +19,23 @@ export default class CardListItem extends Component {
 
     data() {
         var data = serialize(this.refs.form, { hash: true });
+
         data.tab_id = parseInt(data.tab_id);
+
+        data.from_deg = parseInt(data.from_deg);
+        data.from_vol = parseInt(data.from_vol);
+        data.to_deg = parseInt(data.to_deg);
         data.result = getCardResult(data);
+
+        data.spirit_temp = parseInt(data.spirit_temp);
+        data.water_temp = parseInt(data.water_temp);
+
         data.to_vol = getCardFullVolume(data);
-        data.text = data.text ? data.text : getCardLabel(data);
-        
         data.forecast_vol = forecastSolutionVolume(
             data.result, data.water_temp, data.from_vol, data.spirit_temp, data.from_deg, data.to_deg
         );
+
+        data.text = data.text ? data.text : getCardLabel(data);
         return data;
     }
 
@@ -74,9 +83,9 @@ export default class CardListItem extends Component {
 
                             <section>{content}</section>
 
-                            <div className="result">{__('Thinner volume, ml')}: <b>{card.result}</b></div>
-                            <div className="volume">{__('Summary volume, ml')}: <b>{card.to_vol}</b></div>
-                            <div className="forecast">{__('Forecasted volume, ml')}: <b>{card.forecast_vol}</b></div>
+                            <div className="result">{__('Thinner volume, ml')}: <b>{card.result.toFixed(2)}</b></div>
+                            <div className="volume">{__('Summary volume, ml')}: <b>{card.to_vol.toFixed(2)}</b></div>
+                            <div className="forecast">{__('Forecasted volume, ml')}: <b>{card.forecast_vol.toFixed(2)}</b></div>
                         </CardText>
 
                         <CardActions border>
