@@ -15,7 +15,7 @@ function connect(callback) {
 
 module.exports.getCards = function(request, response) {
     connect(function(db, result) {
-        console.log('Return all cards from DB');
+        console.log('Return all the cards from DB');
         result.status = 200;
         result.data = [];
 
@@ -37,9 +37,11 @@ module.exports.setCards = function(request, response) {
         console.log('Perform action ' + request.body.action);
         result.status = 200;
 
-        var collection = db.collection('cards');
+        var collection = db.collection('cards'),
+            data = JSON.parse(request.body.data);
+
         if (request.body.action == 'DELETE_CARD') {
-            collection.deleteOne(request.body.data, { w: 1 }, function (error) {
+            collection.deleteOne(data, { w: 1 }, function (error) {
                 if (error) {
                     console.log(error);
                     result = { status: 500, message: error };
@@ -48,7 +50,7 @@ module.exports.setCards = function(request, response) {
                 db.close();
             });
         } else {
-            collection.insert(request.body.data, { w: 1 }, function (error) {
+            collection.insert(data, { w: 1 }, function (error) {
                 if (error) {
                     console.log(error);
                     result = { status: 500, message: error };

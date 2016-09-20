@@ -1,14 +1,14 @@
 // Approximate function for spirit density due shifting from default temp 20*C
 // x - spirit volume, t - temperature *C
 export function forecastSpiritVolume(x, t) {
-    t = parseFloat(t);
+    x = parseFloat(x); t = parseFloat(t);
     return x * ((0.000001 * t * t) - (0.000914 * t) + 0.825) / 0.8069;
 }
 
 // Approximate function for water density due shifting from default temp 20*C
 // x - water volume, t - temperature *C
 export function forecastWaterVolume(x, t) {
-    t = parseFloat(t);
+    x = parseFloat(x); t = parseFloat(t);
     return x * (-(0.000004 * t * t) - 0.000075 * t + 1.001) / 0.99829;
 
 }
@@ -30,7 +30,7 @@ export function forecastSolutionContracting(x) {
 // Approximate function for solution expansion by heating after mixing
 // x - solution volume, t - temperature *C
 export function forecastSolutionExpansion(x, t) {
-    t = parseFloat(t);
+    x = parseFloat(x); t = parseFloat(t);
     return  x * (-(0.000009 * t * t) - 0.00123 * t + 0.996) / 0.9686;
 }
 
@@ -48,5 +48,5 @@ export function forecastSolutionVolume(water_vol, water_temp, spirit_vol, spirit
     solution_volume = spirit_real_vol + water_real_vol - solution_contracting;
     solution_temp = (water_temp > spirit_temp ? water_temp : spirit_temp) * 1.1;
 
-    return forecastSolutionExpansion(solution_volume, solution_temp).toFixed(2);
+    return forecastSolutionExpansion(solution_volume, solution_temp);
 }
