@@ -1,0 +1,12 @@
+server {
+    listen      80;
+    server_name a.m53.by;
+    charset     utf-8;
+
+    access_log   /home/manti/www/archimed/log/nginx_access.log;
+    error_log    /home/manti/www/archimed/log/nginx_error.log;
+
+    location / {
+        proxy_pass http://localhost:3000;
+    }
+}
