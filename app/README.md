@@ -7,33 +7,24 @@ Test React/Redux application
 Setup:
 ----------------------------------------------------------
 
-Update system packages:
+1. Update system packages:
 
-```
-$ sudo apt-get update
-$ sudo apt-get upgrade -y
-```
+        $ sudo apt-get update
+        $ sudo apt-get upgrade -y
 
-Remove default system NodeJS and NPM
+2. Remove default system NodeJS and NPM
 
-```
-sudo apt-get remove nodejs npm
-```
+        $ sudo apt-get remove nodejs npm
 
-Install latest NodeJS server, NPM and MongoDB
+3. Install latest NodeJS server, NPM and MongoDB
 
-```
-$ curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
-$ sudo apt-get install -y nodejs mongodb-server mongodb-clients build-essential
-```
+        $ curl -sL https://deb.nodesource.com/setup_0.12 | sudo -E bash -
+        $ sudo apt-get install -y nodejs mongodb-server mongodb-clients build-essential
 
-Install NPM packages and run server:
+4. Install NPM packages and run server:
 
-```
-$ cd /vagrant/application
-$ npm install
-$ npm start
-```
-
+        $ cd /vagrant/application
+        $ npm install
+        $ npm start
 
 See [root readme](https://github.com/manti-by/Archimed) for more info

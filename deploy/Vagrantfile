@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = "ubuntu/trusty64"
+    config.vm.hostname = "archimed-vagrant"
+
+    config.vm.network "private_network", ip: "192.168.33.10"
+    config.vm.network "forwarded_port", guest: 3000, host: 3000
+    config.vm.network "forwarded_port", guest: 3001, host: 3001
+
+    config.vm.provider :virtualbox do |vb|
+        vb.name = "archimed"
+        vb.customize ["modifyvm", :id, "--memory", "4096"]
+    end
+  
+    config.vm.provision :shell, path: "scripts/bootstrap.sh"
+
+    config.vm.synced_folder "../", "/home/vagrant/app/src"
+    config.vm.synced_folder "../../log", "/home/vagrant/app/log"
+end
+
+load "Vagrantfile.local" if File.exists? "Vagrantfile.local"

@@ -2,7 +2,7 @@
 
 .DS_Store
 .idea/
-.vagrant/
+deploy/.vagrant/
 
 app/node_modules/
 app/npm-debug.log
